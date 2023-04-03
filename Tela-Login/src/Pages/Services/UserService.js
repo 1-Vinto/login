@@ -1,5 +1,5 @@
 export default async function fazerPostDeJSON(dados) {
-  const url = "https://geminiapi-services-x2awrs6jqq-rj.a.run.app/api/v1/auth/login";
+  const url = "Add API link";
   
   const data = dados
 
