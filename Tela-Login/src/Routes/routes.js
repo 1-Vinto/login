@@ -9,7 +9,7 @@ const Routering = () => {
     return ( 
     <Router>
         <Routes>
-            <Route path="*" element={<Login/>}/>
+            <Route path="/*" element={<Login />}/>
             {/* <Route path="/cadastrar" element={<Cadastro/>}/> */}
             <Route path="/home" element={
                 <ProtectedRoutes>

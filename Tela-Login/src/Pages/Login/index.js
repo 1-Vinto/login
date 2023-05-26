@@ -5,10 +5,10 @@ import Button from "../../Components/Button/index";
 import { validarEmail, validarSenha } from '../../Utils/validadores'
 import fazerPostDeJSON from "../Services/UserService";
 import { useNavigate } from "react-router-dom";
+import AppModal from "../../Components/Modal/modal";
 
 
-
-const Login = () => {
+const Login = ({ isOpen, onRequestClose }) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({});
@@ -21,11 +21,8 @@ const Login = () => {
       console.log("response do login", response);
       if (response.usuarioAutenticado === true) {
         navigate("/home"); // navegar para home
-      } else {
-        alert("Usuário ou senha inválidos.");
-      }
       setLoading(false);
-    } catch (err) {
+        }} catch (err) {
       alert("Algo deu errado com o Login" + err);
     }
   };
@@ -40,8 +37,22 @@ const Login = () => {
     return inputValido;
   };
 
+
+  const [modalIsOpen, setModalIsOpen] = useState(false)
+
+  function handleModalChange(){
+    setModalIsOpen(!modalIsOpen)
+    console.log(modalIsOpen)
+  }
+
+
   return (
-    <Container>
+    <>
+    <Button onClick={handleModalChange} >
+      Teste do modal 
+      </Button>
+    <AppModal isOpen={modalIsOpen} onRequestClose={() => {setModalIsOpen(false)}}>
+    
       <Form>
         <h1>Efetue o Login</h1>
         <Input
@@ -68,7 +79,8 @@ const Login = () => {
           <a>Cadastrar</a>
         </div>
       </Form>
-    </Container>
+    </AppModal>
+    </>
   );
 };
 
